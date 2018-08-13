@@ -2,26 +2,26 @@
     <input
         ref="autocomplete"
         type="text"
-        :class="classname"
+        :class="[classname, classix]"
         :id="id"
-        :placeholder="placeholder"
         v-model="autocompleteText"
         @focus="onFocus()"
         @blur="onBlur()"
         @change="onChange"
         @keypress="onKeyPress"
         @keyup="onKeyUp"
+        v-validate="'required'"
+        :name="id"
     />
 </template>
 
 <script>
     const ADDRESS_COMPONENTS = {
-        subpremise : 'short_name',
         street_number: 'short_name',
         route: 'long_name',
         locality: 'long_name',
         administrative_area_level_1: 'short_name',
-        administrative_area_level_2: 'long_name',
+        administrative_area_level_2: 'county',
         country: 'long_name',
         postal_code: 'short_name'
     };
@@ -31,9 +31,16 @@
         'administrative_area_level_1', 'administrative_area_level_2'];
 
     export default {
+        inject: ['$validator'],
         name: 'VueGoogleAutocomplete',
+        created() {
+        },
 
         props: {
+          classix: {
+            type: String,
+            default: '',
+          },
           id: {
             type: String,
             required: true
