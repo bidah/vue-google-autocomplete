@@ -7,6 +7,7 @@
         v-model="autocompleteText"
         @focus="onFocus()"
         @blur="onBlur()"
+        :placeholder="placeholder"
         @change="onChange"
         @keypress="onKeyPress"
         @keyup="onKeyUp"
