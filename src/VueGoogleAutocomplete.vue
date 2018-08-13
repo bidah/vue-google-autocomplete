@@ -119,6 +119,9 @@
         watch: {
             autocompleteText: function (newVal, oldVal) {
 	            this.$emit('inputChange', { newVal, oldVal }, this.id);
+
+              if(!Boolean(newVal))
+                this.$root.$emit('resetMap', this.id)
             },
             country: function(newVal, oldVal) {
               this.autocomplete.setComponentRestrictions({
