@@ -13,6 +13,7 @@
         @keyup="onKeyUp"
         v-validate="'required'"
         :name="id"
+        autocomplete="off"
     />
 </template>
 
