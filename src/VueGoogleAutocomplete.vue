@@ -36,8 +36,11 @@
         inject: ['$validator'],
         name: 'VueGoogleAutocomplete',
         created() {
+          document.addEventListener('blur', this.removeFocus);
         },
-
+        beforeDestroy() {
+          document.removeEventListener('blur', this.removeFocus);
+        },
         props: {
           classix: {
             type: String,
@@ -153,6 +156,9 @@
         },
 
         methods: {
+            removeFocus(event) {
+              debugger;
+            },
             /**
              * When a place changed
              */
