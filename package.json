@@ -1,6 +1,6 @@
 {
   "name": "vue-google-autocomplete--arreglalo",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Vue component to Google Places Autocomplete for arreglalo.tech",
   "main": "src/VueGoogleAutocomplete.vue",
   "homepage": "https://github.com/olefirenko/vue-google-autocomplete",
