@@ -42,6 +42,7 @@
           document.removeEventListener('blur', this.removeFocus);
         },
         props: {
+          googleObj: Object, 
           classix: {
             type: String,
             default: '',
@@ -121,6 +122,30 @@
         },
 
         watch: {
+          googleObj: function(newVal, oldVal) {
+
+            if(!newVal) 
+              return; 
+
+            const options = {};
+
+            if (this.types) {
+              options.types = [this.types];
+            }
+
+            if (this.country) {
+              options.componentRestrictions = {
+                country: this.country
+              };
+            }
+
+            this.autocomplete = new this.googleObj.maps.places.Autocomplete(
+              document.getElementById(this.id),
+              options
+            );
+
+            this.autocomplete.addListener('place_changed', this.onPlaceChanged);
+          },
             autocompleteText: function (newVal, oldVal) {
 	            this.$emit('inputChange', { newVal, oldVal }, this.id);
 
@@ -135,24 +160,6 @@
         },
 
         mounted: function() {
-          const options = {};
-
-          if (this.types) {
-            options.types = [this.types];
-          }
-
-          if (this.country) {
-            options.componentRestrictions = {
-              country: this.country
-            };
-          }
-
-          this.autocomplete = new google.maps.places.Autocomplete(
-                document.getElementById(this.id),
-                options
-            );
-
-          this.autocomplete.addListener('place_changed', this.onPlaceChanged);
         },
 
         methods: {
